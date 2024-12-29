@@ -12,18 +12,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         
-      - name: Clear npm cache
-        run: npm cache clean --force
+      # - name: Clear npm cache
+      #   run: npm cache clean --force
 
-      # Step 2: Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      # # Step 2: Set up Node.js environment
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
+      # # Step 3: Install dependencies
+      # - name: Install dependencies
+      #   run: npm install
 
       # Step 4: Run JavaScript script to create a repository
       - name: Run create-repo script
