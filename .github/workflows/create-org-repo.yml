@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the current repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # # Step 1: Checkout the current repository
+      # - name: Checkout repository
+      #   uses: actions/checkout@v2
 
       # Step 2: Set up Node.js environment
       - name: Set up Node.js
