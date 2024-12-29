@@ -1,32 +1,29 @@
-name: Create GitHub Repository
+name: Create Organization Repository
 
 on:
-  workflow_dispatch: # Allows manual triggering of the workflow
+  workflow_dispatch: # Allows manual trigger of the workflow
 
 jobs:
   create-repo:
     runs-on: ubuntu-latest
+
     steps:
-      # # Step 1: Checkout the repository (optional, if using files from the current repo)
-      # - name: Checkout repository
-      #   uses: actions/checkout@v3
+      # Step 1: Checkout the current repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # Step 2: Call GitHub API to create a repository
-      - name: Create Repository
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run JavaScript script to create a repository
+      - name: Run create-repo script
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_PAT }} # GitHub token for authentication
-        run: |
-          curl -X POST \
-          -H "Authorization: Bearer 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" \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/orgs/mt4621-org/repos \
-          -d '{
-                "name": "new-repository-name",
-                "description": "This is a new repository created via GitHub Actions",
-                "private": true,
-                "auto_init": true
-              }'
-
-      # Step 3: Output confirmation
-      - name: Confirm Repository Creation
-        run: echo "Repository 'new-repository-name' created successfully."
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token for authentication
+        run: node scripts/create-repo.js
