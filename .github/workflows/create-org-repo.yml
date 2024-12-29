@@ -11,6 +11,9 @@ jobs:
       # Step 1: Checkout the current repository
       - name: Checkout repository
         uses: actions/checkout@v2
+        
+      - name: Clear npm cache
+        run: npm cache clean --force
 
       # Step 2: Set up Node.js environment
       - name: Set up Node.js
