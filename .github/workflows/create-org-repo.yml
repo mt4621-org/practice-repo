@@ -14,7 +14,7 @@ jobs:
       # Step 2: Call GitHub API to create a repository
       - name: Create Repository
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token for authentication
+          GITHUB_TOKEN: ${{ secrets.REPO_PAT }} # GitHub token for authentication
         run: |
           curl -X POST \
           -H "Authorization: Bearer $GITHUB_TOKEN" \
