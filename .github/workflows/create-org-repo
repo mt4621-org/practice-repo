@@ -1,0 +1,32 @@
+name: Create GitHub Repository
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  create-repo:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository (optional, if using files from the current repo)
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Call GitHub API to create a repository
+      - name: Create Repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token for authentication
+        run: |
+          curl -X POST \
+          -H "Authorization: Bearer $GITHUB_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/orgs/mt4621-org/repos \
+          -d '{
+                "name": "new-repository-name",
+                "description": "This is a new repository created via GitHub Actions",
+                "private": true,
+                "auto_init": true
+              }'
+
+      # Step 3: Output confirmation
+      - name: Confirm Repository Creation
+        run: echo "Repository 'new-repository-name' created successfully."
