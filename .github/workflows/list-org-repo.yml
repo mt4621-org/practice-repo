@@ -19,7 +19,7 @@ jobs:
          script: |
           
             const response = await github.request('GET /orgs/mt4621-org/repos', {
-              org: orgName
+              org: `orgName`
             });
             console.log(response);
         
