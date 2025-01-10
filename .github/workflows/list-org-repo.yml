@@ -17,9 +17,9 @@ jobs:
         with: 
          github-token: ${{ secrets.Repo_PAT }}
          script: |
-           # let org = "${{ github.event.input.targerorg }}";
-           # let repoList = []; 
           
-            let org  = await github.request('GET /orgs/mt4621-org/repos')
-            console.log(org)
+            const response = await github.request('GET /orgs/mt4621-org/repos', {
+              org: orgName
+            });
+            console.log(response);
         
