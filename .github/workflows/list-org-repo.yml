@@ -6,7 +6,7 @@ on:
       targetorg:
         description: "Target Organisation"
         required: true
-        type: choice
+        type: string
 
 jobs:
   list-org-repo:
