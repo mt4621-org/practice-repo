@@ -1,0 +1,25 @@
+name: List Organization Repository
+
+on:
+  workflow_dispatch: # Allows manual trigger of the workflow
+    inputs:
+      targetorg:
+        description: "Target Organisation"
+        required: true
+        type: choice
+
+jobs:
+  list-org-repo:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Run script
+        uses: actions/github-script@v6.4.0
+        with: 
+         github-token: ${{ Repo.PAT }}
+         script: |
+           # let org = "${{ github.event.input.targerorg }}";
+           # let repoList = []; 
+          
+            let org  = await github.request('GET /orgs/mt4621-org/repos')
+            console.log(org)
+        
